@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirsStack - AI Infrastructure Research & Engineering</title>
+    <meta name="description" content="Building the Future of AI Infrastructure through Research & Engineering">
+    <meta name="keywords" content="AI infrastructure, Rust, machine learning, research, open source">
+    
+    <style>
+        :root {
+            --primary-color: #ff6b35;
+            --rust-orange: #ce422b;
+            --bg-dark: #0a0e1a;
+            --bg-medium: #1a1f2e;
+            --bg-light: #2a3142;
+            --text-light: #ffffff;
+            --text-medium: #b8c5d1;
+            --text-muted: #8892a0;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-medium) 50%, var(--bg-light) 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            padding: 4rem 0 3rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--rust-orange));
+            border-radius: 16px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--rust-orange));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Vision Section */
+        .vision {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .vision h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .vision p {
+            color: var(--text-medium);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vision-highlight {
+            font-style: italic;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-icon {
+            font-size: 1.8rem;
+        }
+
+        /* Repository Grid */
+        .repositories {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .repo-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .repo-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary-color);
+        }
+
+        .repo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .repo-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .repo-name:hover {
+            color: var(--primary-color);
+        }
+
+        .repo-type {
+            background: var(--rust-orange);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .repo-description {
+            color: var(--text-medium);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .repo-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .repo-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .repo-link:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Community Section */
+        .community-link {
+            display: block;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: all 0.2s ease;
+        }
+
+        .community-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary-color);
+        }
+
+        .community-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .community-description {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-motto {
+            font-style: italic;
+            margin-top: 0.5rem;
+            color: var(--text-medium);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .repo-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .repo-links {
+                flex-direction: column;
+            }
+
+            .repo-link {
+                text-align: center;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 2rem 0;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .section h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">🦀</div>
+            <h1>AirsStack</h1>
+            <p class="tagline">Building the Future of AI Infrastructure through Research & Engineering</p>
+        </header>
+
+        <section class="vision">
+            <h2>Our Vision</h2>
+            <p>
+                AirsStack is dedicated to advancing the science and engineering of AI infrastructure through 
+                <span class="vision-highlight">open-source research</span>, 
+                <span class="vision-highlight">production-grade tooling</span>, and 
+                <span class="vision-highlight">comprehensive documentation</span>. 
+                We combine rigorous research with practical engineering to create foundational technologies 
+                that power next-generation AI systems, built with Rust for maximum performance and reliability.
+            </p>
+        </section>
+
+        <main class="main-content">
+            <section class="section">
+                <h2>
+                    <span class="section-icon">🚀</span>
+                    Repositories & Documentation
+                </h2>
+                <div class="repositories">
+                    <div class="repo-item">
+                        <div class="repo-header">
+                            <a href="https://github.com/airsstack/airsstack" class="repo-name">airsstack/airsstack</a>
+                            <span class="repo-type">Rust</span>
+                        </div>
+                        <div class="repo-description">
+                            The foundational AI & Rust technology stack featuring Model Context Protocol (MCP) implementation, 
+                            knowledge infrastructure (airs-tessera), and comprehensive development tooling for AI-assisted workflows.
+                        </div>
+                        <div class="repo-links">
+                            <a href="https://github.com/airsstack/airsstack" class="repo-link">View Repository</a>
+                            <a href="https://airsstack.github.io/airsstack" class="repo-link">📖 Documentation</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>
+                    <span class="section-icon">💬</span>
+                    Community & Discussion
+                </h2>
+                <a href="https://github.com/orgs/airsstack/discussions" class="community-link">
+                    <div class="community-title">GitHub Discussions</div>
+                    <div class="community-description">
+                        Join our community discussions for questions, ideas, announcements, and collaboration opportunities. 
+                        Share your experiences, get help, and contribute to the future of AI infrastructure.
+                    </div>
+                </a>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div>
+                <strong>🦀 Built with Rust | 🔬 Powered by Research | 🚀 Engineered for Tomorrow</strong>
+            </div>
+            <div class="footer-motto">
+                "The best way to predict the future of AI infrastructure is to research and build it."
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
