@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirsStack - AI Infrastructure Research & Engineering</title>
-    <meta name="description" content="Building the Future of AI Infrastructure through Research & Engineering">
-    <meta name="keywords" content="AI infrastructure, Rust, machine learning, research, open source">
+    <title>AirsStack - Production AI Agent Platform</title>
+    <meta name="description" content="Actor-based runtime, WASM components, and private model infrastructure for production AI agents">
+    <meta name="keywords" content="AI agents, Rust, WASM, Actor Model, Erlang, MCP, agent infrastructure">
     
     <style>
         :root {
-            --primary-color: #ff6b35;
-            --rust-orange: #ce422b;
+            --primary: #ff6b35;
+            --rust: #ce422b;
             --bg-dark: #0a0e1a;
             --bg-medium: #1a1f2e;
             --bg-light: #2a3142;
-            --text-light: #ffffff;
-            --text-medium: #b8c5d1;
+            --text-primary: #ffffff;
+            --text-secondary: #b8c5d1;
             --text-muted: #8892a0;
-            --border-color: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.1);
             --card-bg: rgba(255, 255, 255, 0.05);
+            --accent-blue: #4a9eff;
+            --accent-green: #00d4aa;
         }
 
         * {
@@ -28,136 +30,174 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-medium) 50%, var(--bg-light) 100%);
-            color: var(--text-light);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
         /* Header */
         .header {
-            padding: 4rem 0 3rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 3rem;
+            padding: 3rem 0 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--rust-orange));
-            border-radius: 16px;
-            margin: 0 auto 1.5rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--rust));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
+            flex-shrink: 0;
         }
 
-        h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--rust-orange));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .header-text h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
         }
 
         .tagline {
-            font-size: 1.3rem;
-            color: var(--text-medium);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
-        /* Vision Section */
-        .vision {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 3rem;
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
             text-align: center;
         }
 
-        .vision h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
         }
 
-        .vision p {
-            color: var(--text-medium);
-            font-size: 1.1rem;
-            line-height: 1.7;
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-labels {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .label {
+            padding: 0.5rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Architecture Diagram */
+        .architecture {
+            padding: 3rem 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin: 3rem 0;
+        }
+
+        .architecture h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .arch-layers {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
             max-width: 800px;
             margin: 0 auto;
         }
 
-        .vision-highlight {
-            font-style: italic;
-            color: var(--primary-color);
-            font-weight: 500;
-        }
-
-        /* Main Content */
-        .main-content {
-            display: grid;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .section {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
+        .arch-layer {
+            background: var(--bg-medium);
+            border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 2rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
         }
 
-        .section h2 {
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-light);
+        .arch-layer:hover {
+            border-color: var(--primary);
+            transform: translateX(8px);
+        }
+
+        .arch-layer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .section-icon {
-            font-size: 1.8rem;
+        .arch-layer-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
 
-        /* Repository Grid */
-        .repositories {
+        /* Components Grid */
+        .components {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .component-grid {
             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
         }
 
-        .repo-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+        .component-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             padding: 1.5rem;
             transition: all 0.2s ease;
         }
 
-        .repo-item:hover {
+        .component-card:hover {
             background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary-color);
+            border-color: var(--primary);
         }
 
-        .repo-header {
+        .component-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -165,144 +205,165 @@
             gap: 1rem;
         }
 
-        .repo-name {
+        .component-name {
             font-size: 1.3rem;
             font-weight: 600;
-            color: var(--text-light);
+            color: var(--text-primary);
             text-decoration: none;
             transition: color 0.2s ease;
         }
 
-        .repo-name:hover {
-            color: var(--primary-color);
+        .component-name:hover {
+            color: var(--primary);
         }
 
-        .repo-type {
-            background: var(--rust-orange);
-            color: white;
+        .component-status {
             padding: 0.25rem 0.75rem;
             border-radius: 12px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 500;
             white-space: nowrap;
         }
 
-        .repo-description {
-            color: var(--text-medium);
+        .status-available { background: rgba(0, 212, 170, 0.2); color: var(--accent-green); }
+        .status-development { background: rgba(74, 158, 255, 0.2); color: var(--accent-blue); }
+        .status-planned { background: rgba(255, 255, 255, 0.1); color: var(--text-muted); }
+
+        .component-desc {
+            color: var(--text-secondary);
             margin-bottom: 1rem;
-            line-height: 1.6;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
-        .repo-links {
+        .component-links {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
         }
 
-        .repo-link {
-            color: var(--primary-color);
+        .component-link {
+            color: var(--primary);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             padding: 0.5rem 1rem;
-            border: 1px solid var(--primary-color);
+            border: 1px solid var(--primary);
             border-radius: 6px;
             transition: all 0.2s ease;
         }
 
-        .repo-link:hover {
-            background: var(--primary-color);
+        .component-link:hover {
+            background: var(--primary);
             color: white;
         }
 
-        /* Community Section */
-        .community-link {
-            display: block;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-decoration: none;
-            color: var(--text-light);
-            transition: all 0.2s ease;
+        /* Design Principles */
+        .principles {
+            padding: 3rem 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin: 3rem 0;
         }
 
-        .community-link:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary-color);
+        .principles h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
         }
 
-        .community-title {
-            font-size: 1.2rem;
+        .principle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .principle {
+            text-align: center;
+        }
+
+        .principle-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .principle-title {
+            font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
-            color: var(--text-light);
         }
 
-        .community-description {
-            color: var(--text-medium);
-            font-size: 0.95rem;
+        .principle-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
         }
 
         /* Footer */
         .footer {
-            border-top: 1px solid var(--border-color);
-            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
             text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        .footer-note {
             color: var(--text-muted);
             font-size: 0.9rem;
+            margin-top: 1rem;
         }
 
-        .footer-motto {
-            font-style: italic;
-            margin-top: 0.5rem;
-            color: var(--text-medium);
-        }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
             .container {
                 padding: 0 1rem;
             }
 
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            .tagline {
-                font-size: 1.1rem;
-            }
-
-            .repo-header {
+            .header-content {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            .repo-links {
-                flex-direction: column;
-            }
-
-            .repo-link {
                 text-align: center;
             }
 
-            .section {
-                padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header {
-                padding: 2rem 0;
+            .header-text h1 {
+                font-size: 2rem;
             }
 
-            h1 {
+            .hero-title {
                 font-size: 1.8rem;
             }
 
-            .section h2 {
-                font-size: 1.4rem;
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .arch-layer:hover {
+                transform: none;
             }
         }
     </style>
@@ -310,132 +371,227 @@
 <body>
     <div class="container">
         <header class="header">
-            <div class="logo">🦀</div>
-            <h1>airsstack</h1>
-            <p class="tagline">Building the Future of AI Infrastructure through Research & Engineering</p>
+            <div class="header-content">
+                <div class="logo">🦀</div>
+                <div class="header-text">
+                    <h1>AirsStack</h1>
+                    <p class="tagline">Production AI Agent Platform</p>
+                </div>
+            </div>
         </header>
 
-        <section class="vision">
-            <h2>Our Vision</h2>
-            <p>
-                AirsStack is dedicated to advancing the science and engineering of AI infrastructure through 
-                <span class="vision-highlight">open-source research</span>, 
-                <span class="vision-highlight">production-grade tooling</span>, and 
-                <span class="vision-highlight">comprehensive documentation</span>. 
-                We combine rigorous research with practical engineering to create foundational technologies 
-                that power next-generation AI systems, built with Rust for maximum performance and reliability.
+        <section class="hero">
+            <h1 class="hero-title">Actor-Based Runtime for AI Agents</h1>
+            <p class="hero-subtitle">
+                Foundational infrastructure combining Erlang-inspired supervision, WASM component isolation, 
+                and support for private model deployment. Build agents that run reliably in production.
             </p>
+            <div class="hero-labels">
+                <span class="label">Actor-Based</span>
+                <span class="label">WASM-Portable</span>
+                <span class="label">Model-Agnostic</span>
+                <span class="label">Rust-Native</span>
+                <span class="label">Open Source</span>
+            </div>
         </section>
 
-        <main class="main-content">
-            <section class="section">
-                <h2>
-                    <span class="section-icon">🚀</span>
-                    Repositories & Documentation
-                </h2>
-                <div class="repositories">
-                    <div class="repo-item">
-                        <div class="repo-header">
-                            <a href="https://github.com/airsstack/airsstack" class="repo-name">airsstack/airsstack</a>
-                            <span class="repo-type">Rust</span>
-                        </div>
-                        <div class="repo-description">
-                            The foundational AI & Rust technology stack featuring Model Context Protocol (MCP) implementation, 
-                            knowledge infrastructure (airs-tessera), and comprehensive development tooling for AI-assisted workflows.
-                        </div>
-                        <div class="repo-links">
-                            <a href="https://github.com/airsstack/airsstack" class="repo-link">View Repository</a>
-                            <a href="https://airsstack.github.io/airsstack" class="repo-link">📖 Documentation</a>
-                        </div>
+        <section class="architecture">
+            <h2>Architecture Layers</h2>
+            <div class="arch-layers">
+                <div class="arch-layer">
+                    <div class="arch-layer-title">
+                        <span>🎮</span>
+                        <span>Orchestration: airsstack + airsspec</span>
                     </div>
-
-                    <div class="repo-item">
-                        <div class="repo-header">
-                            <a href="https://github.com/airsstack/airsprotocols" class="repo-name">airsstack/airsprotocols</a>
-                            <span class="repo-type">Rust</span>
-                        </div>
-                        <div class="repo-description">
-                            Production-grade protocol implementations including Model Context Protocol (MCP) with authentication, 
-                            authorization, and multiple transport adapters (HTTP/SSE, stdio). Features OAuth2, API key auth, 
-                            and comprehensive async runtime support.
-                        </div>
-                        <div class="repo-links">
-                            <a href="https://github.com/airsstack/airsprotocols" class="repo-link">View Repository</a>
-                            <a href="https://airsstack.github.io/airsprotocols" class="repo-link">📖 Documentation</a>
-                        </div>
-                    </div>
-
-                    <div class="repo-item">
-                        <div class="repo-header">
-                            <a href="https://github.com/airsstack/airssys" class="repo-name">airsstack/airssys</a>
-                            <span class="repo-type">Rust</span>
-                        </div>
-                        <div class="repo-description">
-                            System-level infrastructure components including OS Layer (OSL) framework for cross-platform operations 
-                            and Erlang-inspired Actor Runtime (RT) for fault-tolerant concurrent systems. Production-grade 
-                            foundations for building reliable distributed applications.
-                        </div>
-                        <div class="repo-links">
-                            <a href="https://github.com/airsstack/airssys" class="repo-link">View Repository</a>
-                            <a href="https://airsstack.github.io/airssys" class="repo-link">📖 Documentation</a>
-                        </div>
-                    </div>
-
-                    <div class="repo-item">
-                        <div class="repo-header">
-                            <a href="https://github.com/airsstack/airsdlc" class="repo-name">airsstack/airsdlc</a>
-                            <span class="repo-type">Framework</span>
-                        </div>
-                        <div class="repo-description">
-                            AI-Integrated Development Lifecycle (AI-DLC) framework providing structured methodologies for 
-                            AI-assisted software development. Features decision records (ADRs), design artifacts, planning documents, 
-                            and integrated playbook workflows for maximizing AI collaboration efficiency.
-                        </div>
-                        <div class="repo-links">
-                            <a href="https://github.com/airsstack/airsdlc" class="repo-link">View Repository</a>
-                            <a href="https://airsstack.github.io/airsdlc" class="repo-link">📖 Documentation</a>
-                        </div>
-                    </div>
-
-                    <div class="repo-item">
-                        <div class="repo-header">
-                            <a href="https://github.com/airsstack/airsdsp" class="repo-name">airsstack/airsdsp</a>
-                            <span class="repo-type">Rust</span>
-                        </div>
-                        <div class="repo-description">
-                            Rust implementation of the Demonstrate-Search-Predict (DSP) framework for building sophisticated 
-                            language model and retrieval model pipelines. Focuses on explicit control, systematic problem 
-                            decomposition, and compositional architecture with frozen model support for production environments.
-                        </div>
-                        <div class="repo-links">
-                            <a href="https://github.com/airsstack/airsdsp" class="repo-link">View Repository</a>
-                            <a href="https://airsstack.github.io/airsdsp" class="repo-link">📖 Documentation</a>
-                        </div>
+                    <div class="arch-layer-desc">
+                        CLI orchestrator and YAML-based agent specifications. Build, deploy, and manage agents across environments.
                     </div>
                 </div>
-            </section>
 
-            <section class="section">
-                <h2>
-                    <span class="section-icon">💬</span>
-                    Community & Discussion
-                </h2>
-                <a href="https://github.com/orgs/airsstack/discussions" class="community-link">
-                    <div class="community-title">GitHub Discussions</div>
-                    <div class="community-description">
-                        Join our community discussions for questions, ideas, announcements, and collaboration opportunities. 
-                        Share your experiences, get help, and contribute to the future of AI infrastructure.
+                <div class="arch-layer">
+                    <div class="arch-layer-title">
+                        <span>🔌</span>
+                        <span>Protocols: airsprotocols</span>
                     </div>
-                </a>
-            </section>
-        </main>
+                    <div class="arch-layer-desc">
+                        MCP implementation, A2A communication, and LLM provider abstraction. Connect agents to tools and models.
+                    </div>
+                </div>
+
+                <div class="arch-layer">
+                    <div class="arch-layer-title">
+                        <span>🧠</span>
+                        <span>Cognition: airsdsp</span>
+                    </div>
+                    <div class="arch-layer-desc">
+                        DSP (Demonstrate-Search-Predict) framework implementation. Compose language and retrieval model pipelines.
+                    </div>
+                </div>
+
+                <div class="arch-layer">
+                    <div class="arch-layer-title">
+                        <span>⚙️</span>
+                        <span>Runtime: airssys</span>
+                    </div>
+                    <div class="arch-layer-desc">
+                        Actor runtime with supervision trees, WASM component engine, and cross-platform OS layer. Foundation for reliable execution.
+                    </div>
+                </div>
+
+                <div class="arch-layer">
+                    <div class="arch-layer-title">
+                        <span>📖</span>
+                        <span>Methodology: airsdlc</span>
+                    </div>
+                    <div class="arch-layer-desc">
+                        AI-DLC framework for structured development. Systematic workflow from requirements to production with full traceability.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="components">
+            <h2 class="section-title">Components</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-header">
+                        <a href="https://github.com/airsstack/airsstack" class="component-name">airsstack</a>
+                        <span class="component-status status-development">In Development</span>
+                    </div>
+                    <div class="component-desc">
+                        Command-line orchestrator for agent lifecycle management. Handles WASM component deployment, 
+                        model infrastructure configuration, and runtime monitoring.
+                    </div>
+                    <div class="component-links">
+                        <a href="https://github.com/airsstack/airsstack" class="component-link">Repository</a>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-header">
+                        <a href="https://github.com/airsstack/airsspec" class="component-name">airsspec</a>
+                        <span class="component-status status-planned">Planned</span>
+                    </div>
+                    <div class="component-desc">
+                        Declarative YAML specifications for agent definition. Links to architectural decisions, 
+                        compiles to WASM, and enables version-controlled agent behavior.
+                    </div>
+                    <div class="component-links">
+                        <a href="https://github.com/airsstack/airsspec" class="component-link">Repository</a>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-header">
+                        <a href="https://github.com/airsstack/airsprotocols" class="component-name">airsprotocols</a>
+                        <span class="component-status status-available">Available</span>
+                    </div>
+                    <div class="component-desc">
+                        Production protocol implementations including MCP (v0.2.3), authentication systems, 
+                        and LLM provider abstraction for Ollama, OpenAI, and Anthropic.
+                    </div>
+                    <div class="component-links">
+                        <a href="https://github.com/airsstack/airsprotocols" class="component-link">Repository</a>
+                        <a href="https://airsstack.github.io/airsprotocols" class="component-link">Documentation</a>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-header">
+                        <a href="https://github.com/airsstack/airssys" class="component-name">airssys</a>
+                        <span class="component-status status-available">Available</span>
+                    </div>
+                    <div class="component-desc">
+                        Actor runtime with supervision trees (v0.1.0), WASM component engine, and OS abstraction layer. 
+                        Benchmarked at ~625ns actor spawn time and 4.7M msgs/sec throughput.
+                    </div>
+                    <div class="component-links">
+                        <a href="https://github.com/airsstack/airssys" class="component-link">Repository</a>
+                        <a href="https://airsstack.github.io/airssys" class="component-link">Documentation</a>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-header">
+                        <a href="https://github.com/airsstack/airsdsp" class="component-name">airsdsp</a>
+                        <span class="component-status status-development">In Development</span>
+                    </div>
+                    <div class="component-desc">
+                        Rust implementation of DSP framework (arXiv:2212.14024). Provides explicit control over 
+                        language model and retrieval model composition in multi-stage pipelines.
+                    </div>
+                    <div class="component-links">
+                        <a href="https://github.com/airsstack/airsdsp" class="component-link">Repository</a>
+                        <a href="https://airsstack.github.io/airsdsp" class="component-link">Documentation</a>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-header">
+                        <a href="https://github.com/airsstack/airsdlc" class="component-name">airsdlc</a>
+                        <span class="component-status status-available">Framework</span>
+                    </div>
+                    <div class="component-desc">
+                        Implementation of AWS AI-DLC methodology. Structured workflow from requirements (PRD) through 
+                        domain modeling (DAA) to architecture decisions (ADR) and code deployment (Bolts).
+                    </div>
+                    <div class="component-links">
+                        <a href="https://github.com/airsstack/airsdlc" class="component-link">Repository</a>
+                        <a href="https://airsstack.github.io/airsdlc" class="component-link">Documentation</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="principles">
+            <h2>Design Principles</h2>
+            <div class="principle-grid">
+                <div class="principle">
+                    <div class="principle-icon">🏛️</div>
+                    <div class="principle-title">Historical Foundation</div>
+                    <div class="principle-desc">
+                        Actor Model designed for AI (Hewitt, 1973). Erlang/OTP patterns proven in production. 
+                        Returning actors to original application domain.
+                    </div>
+                </div>
+
+                <div class="principle">
+                    <div class="principle-icon">🔒</div>
+                    <div class="principle-title">Component Isolation</div>
+                    <div class="principle-desc">
+                        WASM sandboxing with capability-based security. Fine-grained resource control. 
+                        Components operate within explicit boundaries.
+                    </div>
+                </div>
+
+                <div class="principle">
+                    <div class="principle-icon">💰</div>
+                    <div class="principle-title">Economic Flexibility</div>
+                    <div class="principle-desc">
+                        Support for Ollama, vLLM, and local inference. Automatic fallback to commercial APIs. 
+                        Deploy based on cost and compliance requirements.
+                    </div>
+                </div>
+
+                <div class="principle">
+                    <div class="principle-icon">📋</div>
+                    <div class="principle-title">Methodological Rigor</div>
+                    <div class="principle-desc">
+                        AI-DLC structured collaboration. Human validation gates. 
+                        Full traceability from requirements to deployment.
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <footer class="footer">
-            <div>
-                <strong>🦀 Built with Rust | 🔬 Powered by Research | 🚀 Engineered for Tomorrow</strong>
+            <div class="footer-links">
+                <a href="https://github.com/airsstack/airsstack" class="footer-link">Get Started</a>
+                <a href="https://airsstack.github.io/" class="footer-link">Documentation</a>
+                <a href="https://github.com/orgs/airsstack/discussions" class="footer-link">Community</a>
             </div>
-            <div class="footer-motto">
-                "The best way to predict the future of AI infrastructure is to research and build it."
+            <div class="footer-note">
+                Open source under Apache 2.0 and MIT licenses
             </div>
         </footer>
     </div>
