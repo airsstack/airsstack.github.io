@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AirsStack - Infrastructure for Knowledge Orchestration</title>
-    <meta name="description" content="Foundational infrastructure, tools, and libraries for knowledge orchestration in AI agent systems">
-    <meta name="keywords" content="AI agents, knowledge orchestration, Rust, WASM, Actor Model, Erlang, MCP, AI-DLC, spec-driven development">
+    <title>AirsStack - Unified AI Infrastructure</title>
+    <meta name="description" content="Open source infrastructure for building, securing, and deploying AI agents using WebAssembly and Rust.">
+    <meta name="keywords" content="AI infrastructure, WASM, Rust, AI agents, MCP, Spec-driven development, Local-first AI">
     
     <style>
         :root {
@@ -21,6 +21,7 @@
             --card-bg: rgba(255, 255, 255, 0.05);
             --accent-blue: #4a9eff;
             --accent-green: #00d4aa;
+            --accent-purple: #9d4edd;
         }
 
         * {
@@ -117,9 +118,51 @@
             color: var(--text-secondary);
         }
 
+        /* Why Section */
+        .why {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            background: var(--bg-medium);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.2s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
         /* Architecture Diagram */
         .architecture {
-            padding: 3rem 0;
+            padding: 4rem 0;
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 16px;
@@ -227,7 +270,7 @@
 
         .status-available { background: rgba(0, 212, 170, 0.2); color: var(--accent-green); }
         .status-development { background: rgba(74, 158, 255, 0.2); color: var(--accent-blue); }
-        .status-planned { background: rgba(255, 255, 255, 0.1); color: var(--text-muted); }
+        .status-planned { background: rgba(157, 78, 221, 0.2); color: var(--accent-purple); }
 
         .component-desc {
             color: var(--text-secondary);
@@ -256,50 +299,6 @@
         .component-link:hover {
             background: var(--primary);
             color: white;
-        }
-
-        /* Design Principles */
-        .principles {
-            padding: 3rem 0;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            margin: 3rem 0;
-        }
-
-        .principles h2 {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-        }
-
-        .principle-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .principle {
-            text-align: center;
-        }
-
-        .principle-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .principle-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .principle-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
         }
 
         /* Footer */
@@ -362,6 +361,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
             .arch-layer:hover {
                 transform: none;
             }
@@ -375,57 +378,87 @@
                 <div class="logo">🦀</div>
                 <div class="header-text">
                     <h1>AirsStack</h1>
-                    <p class="tagline">Foundational Infrastructure for Knowledge Orchestration</p>
+                    <p class="tagline">Unified Infrastructure for AI Agents</p>
                 </div>
             </div>
         </header>
 
         <section class="hero">
-            <h1 class="hero-title">Tools and Libraries for Knowledge Orchestration</h1>
+            <h1 class="hero-title">Infrastructure for Sovereign Intelligence</h1>
             <p class="hero-subtitle">
-                Production-grade infrastructure combining spec-driven development, actor-based runtime, 
-                WASM component isolation, and support for private model deployment. Build AI agent systems 
-                with structured methodology and reliable execution.
+                A modular ecosystem for building, securing, and deploying AI agents. 
+                Combines a WASM-native runtime, declarative specifications, and deterministic reasoning 
+                in a single open-source platform.
             </p>
             <div class="hero-labels">
-                <span class="label">Actor-Based</span>
-                <span class="label">WASM-Portable</span>
-                <span class="label">Model-Agnostic</span>
-                <span class="label">Rust-Native</span>
+                <span class="label">Rust</span>
+                <span class="label">WebAssembly</span>
+                <span class="label">Local-First</span>
+                <span class="label">Spec-Driven</span>
                 <span class="label">Open Source</span>
             </div>
         </section>
 
+        <section class="why">
+            <div class="why-grid">
+                <div class="feature">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Engineering Craftsmanship</h3>
+                    <p>Move beyond brittle scripts. AirsStack treats agents as engineered software components, enforcing schemas, typed interfaces, and deterministic pipelines for reliable production systems.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Sovereign Control</h3>
+                    <p>Escape vendor lock-in. Compile your agents to portable WASM binaries that run as efficiently on your local laptop as they do in an air-gapped server room. Your runtime, your rules.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Industrial Security</h3>
+                    <p>Zero-trust by default. Whether protecting personal notes or enterprise data, agents run in strict, capability-based sandboxes, accessing only the resources you explicitly permit.</p>
+                </div>
+            </div>
+        </section>
+
         <section class="architecture">
-            <h2>Architecture Layers</h2>
+            <h2>The Stack</h2>
             <div class="arch-layers">
                 <div class="arch-layer">
                     <div class="arch-layer-title">
                         <span>🎮</span>
-                        <span>Orchestration: airsstack</span>
+                        <span>Control Plane: airsstack</span>
                     </div>
                     <div class="arch-layer-desc">
-                        CLI orchestrator for agent lifecycle management. Build, deploy, configure, and monitor agents across environments.
+                        Unified CLI controller that orchestrates the entire lifecycle. Validates specs, compiles logic, and manages the runtime.
                     </div>
                 </div>
 
                 <div class="arch-layer">
                     <div class="arch-layer-title">
-                        <span>🔌</span>
-                        <span>Protocols: airsprotocols</span>
+                        <span>📜</span>
+                        <span>Governance: airsdlc & airsspec</span>
                     </div>
                     <div class="arch-layer-desc">
-                        MCP implementation, A2A communication, and LLM provider abstraction. Connect agents to tools and models.
+                        Specification layer defining requirements (PRD), architectural decisions (ADR), and agent schemas.
                     </div>
                 </div>
 
                 <div class="arch-layer">
                     <div class="arch-layer-title">
                         <span>🧠</span>
-                        <span>Cognition: airsdsp</span>
+                        <span>Logic: airsdsp</span>
                     </div>
                     <div class="arch-layer-desc">
-                        DSP (Demonstrate-Search-Predict) framework implementation. Compose language and retrieval model pipelines.
+                        Deterministic reasoning framework implementing the Demonstrate-Search-Predict model. Replaces unstructured prompts with typed pipelines.
+                    </div>
+                </div>
+
+                <div class="arch-layer">
+                    <div class="arch-layer-title">
+                        <span>🕸️</span>
+                        <span>Mesh: airsprotocols</span>
+                    </div>
+                    <div class="arch-layer-desc">
+                        Connectivity layer implementing MCP (Model Context Protocol) and A2A (Agent-to-Agent) communication standards.
                     </div>
                 </div>
 
@@ -435,24 +468,14 @@
                         <span>Runtime: airssys</span>
                     </div>
                     <div class="arch-layer-desc">
-                        Actor runtime with supervision trees, WASM component engine, and cross-platform OS layer. Foundation for reliable execution.
-                    </div>
-                </div>
-
-                <div class="arch-layer">
-                    <div class="arch-layer-title">
-                        <span>📖</span>
-                        <span>Methodology: airsdlc</span>
-                    </div>
-                    <div class="arch-layer-desc">
-                        AI-DLC framework for structured development. Systematic workflow from requirements to production with full traceability.
+                        WASM-first runtime environment. Provides capability-based isolation and secure execution for agent components.
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="components">
-            <h2 class="section-title">Components</h2>
+            <h2 class="section-title">Ecosystem Components</h2>
             <div class="component-grid">
                 <div class="component-card">
                     <div class="component-header">
@@ -460,11 +483,37 @@
                         <span class="component-status status-development">In Development</span>
                     </div>
                     <div class="component-desc">
-                        Command-line orchestrator for agent lifecycle management. Handles WASM component deployment, 
-                        model infrastructure configuration, and runtime monitoring.
+                        The primary CLI controller. Acts as the host for WASM components and provides the unified interface for specification, build, and deployment workflows.
                     </div>
                     <div class="component-links">
                         <a href="https://github.com/airsstack/airsstack" class="component-link">Repository</a>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-header">
+                        <span class="component-name">airsspec</span>
+                        <span class="component-status status-planned">Planned</span>
+                    </div>
+                    <div class="component-desc">
+                        Specification framework providing machine-readable schemas for agents, memories, and missions. Enforces the AirSDLC methodology.
+                    </div>
+                    <div class="component-links">
+                        <!-- Link to be added when repository is created -->
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-header">
+                        <a href="https://github.com/airsstack/airsdsp" class="component-name">airsdsp</a>
+                        <span class="component-status status-development">In Development</span>
+                    </div>
+                    <div class="component-desc">
+                        Rust implementation of the DSP framework. Enables the construction of deterministic, type-safe reasoning pipelines for agents.
+                    </div>
+                    <div class="component-links">
+                        <a href="https://github.com/airsstack/airsdsp" class="component-link">Repository</a>
+                        <a href="https://airsstack.github.io/airsdsp" class="component-link">Documentation</a>
                     </div>
                 </div>
 
@@ -474,8 +523,7 @@
                         <span class="component-status status-available">Available</span>
                     </div>
                     <div class="component-desc">
-                        Production protocol implementations including MCP (v0.2.3), authentication systems, 
-                        and LLM provider abstraction for Ollama, OpenAI, and Anthropic.
+                        Standard library for agent communication. Includes production-ready MCP implementations and connectivity adapters.
                     </div>
                     <div class="component-links">
                         <a href="https://github.com/airsstack/airsprotocols" class="component-link">Repository</a>
@@ -489,83 +537,11 @@
                         <span class="component-status status-available">Available</span>
                     </div>
                     <div class="component-desc">
-                        Actor runtime with supervision trees (v0.1.0), WASM component engine, and OS abstraction layer. 
-                        Benchmarked at ~625ns actor spawn time and 4.7M msgs/sec throughput.
+                        Secure WASM runtime and OS abstraction layer. Ensures agents run with explicit permissions and isolation.
                     </div>
                     <div class="component-links">
                         <a href="https://github.com/airsstack/airssys" class="component-link">Repository</a>
                         <a href="https://airsstack.github.io/airssys" class="component-link">Documentation</a>
-                    </div>
-                </div>
-
-                <div class="component-card">
-                    <div class="component-header">
-                        <a href="https://github.com/airsstack/airsdsp" class="component-name">airsdsp</a>
-                        <span class="component-status status-development">In Development</span>
-                    </div>
-                    <div class="component-desc">
-                        Rust implementation of DSP framework (arXiv:2212.14024). Provides explicit control over 
-                        language model and retrieval model composition in multi-stage pipelines.
-                    </div>
-                    <div class="component-links">
-                        <a href="https://github.com/airsstack/airsdsp" class="component-link">Repository</a>
-                        <a href="https://airsstack.github.io/airsdsp" class="component-link">Documentation</a>
-                    </div>
-                </div>
-
-                <div class="component-card">
-                    <div class="component-header">
-                        <a href="https://github.com/airsstack/airsdlc" class="component-name">airsdlc</a>
-                        <span class="component-status status-available">Framework</span>
-                    </div>
-                    <div class="component-desc">
-                        Implementation of AWS AI-DLC methodology. Structured workflow from requirements (PRD) through 
-                        domain modeling (DAA) to architecture decisions (ADR) and code deployment (Bolts).
-                    </div>
-                    <div class="component-links">
-                        <a href="https://github.com/airsstack/airsdlc" class="component-link">Repository</a>
-                        <a href="https://airsstack.github.io/airsdlc" class="component-link">Documentation</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="principles">
-            <h2>Design Principles</h2>
-            <div class="principle-grid">
-                <div class="principle">
-                    <div class="principle-icon">🏛️</div>
-                    <div class="principle-title">Historical Foundation</div>
-                    <div class="principle-desc">
-                        Actor Model designed for AI (Hewitt, 1973). Erlang/OTP patterns proven in production. 
-                        Returning actors to original application domain.
-                    </div>
-                </div>
-
-                <div class="principle">
-                    <div class="principle-icon">🔒</div>
-                    <div class="principle-title">Component Isolation</div>
-                    <div class="principle-desc">
-                        WASM sandboxing with capability-based security. Fine-grained resource control. 
-                        Components operate within explicit boundaries.
-                    </div>
-                </div>
-
-                <div class="principle">
-                    <div class="principle-icon">💰</div>
-                    <div class="principle-title">Economic Flexibility</div>
-                    <div class="principle-desc">
-                        Support for Ollama, vLLM, and local inference. Automatic fallback to commercial APIs. 
-                        Deploy based on cost and compliance requirements.
-                    </div>
-                </div>
-
-                <div class="principle">
-                    <div class="principle-icon">📋</div>
-                    <div class="principle-title">Methodological Rigor</div>
-                    <div class="principle-desc">
-                        AI-DLC structured collaboration. Human validation gates. 
-                        Full traceability from requirements to deployment.
                     </div>
                 </div>
             </div>
@@ -573,7 +549,7 @@
 
         <footer class="footer">
             <div class="footer-links">
-                <a href="https://github.com/airsstack/airsstack" class="footer-link">Get Started</a>
+                <a href="https://github.com/airsstack/airsstack" class="footer-link">GitHub</a>
                 <a href="https://airsstack.github.io/" class="footer-link">Documentation</a>
                 <a href="https://github.com/orgs/airsstack/discussions" class="footer-link">Community</a>
             </div>
